@@ -1,0 +1,106 @@
+exp_setting:
+  exp_name: 'tcga_domain'                         # Expriment title, log/checkpoint files will be named after this
+  checkpoint_dir: 'checkpoint/'               # Folder for model checkpoints
+  log_dir: 'log/'                             # Folder for training logs
+  data_root: 'data/tcga_01/'
+  seed: 1
+  img_size: -1 # What should this be? Can it be removed? Not used as long as no cnn
+  img_depth: 20501 # May want to rename this to input_dim or something
+  domains: ['brca',
+           'acc',
+           'blca',
+           'cesc',
+           'chol',
+           'coad',
+           'dlbc',
+           'esca',
+           'gbm',
+           'hnsc',
+           'kich',
+           'kirc',
+           'kirp',
+           'laml',
+           'lgg',
+           'lihc',
+           'luad',
+           'lusc',
+           'meso',
+           'ov',
+           'paad',
+           'pcpg',
+           'prad',
+           'read',
+           'sarc',
+           'skcm',
+           'stad',
+           'tgct',
+           'thca',
+           'thym',
+           'ucec',
+           'ucs',
+           'uvm']
+
+model:
+  vae:
+    encoder: [['fc', 500, 'bn', 'LeakyReLU'], # input dimension is img_depth
+              ['fc', 100, '', '']
+             ]
+    code_dim: 33 # Number of domains, right?
+    decoder: [['fc', 500, 'bn', 'LeakyReLU',True],
+              ['fc', 20501, '', '',False]
+             ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+  D_feat:
+    dnn: [['fc', 64, '', 'LeakyReLU',0], # input dimension is dim(z)=enc_dim=dim of last layer of encoder
+          ['fc', 33, '', '', 0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+  D_pix:
+    dnn: [['fc', 500, '', 'LeakyReLU',0], # input dimension is img_depth
+          ['fc', 100, '', 'LeakyReLU',0],
+          ['fc', [1,33], '', '',0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+trainer:
+  total_step: 50000
+  batch_size: 1 #don't change this 
+
+  lambda:
+    pix_recon:
+      init:  100
+      final: 1
+      step:  1000
+    kl:
+      init:  0.000001
+      final: 0.000001
+      step:  1
+    feat_domain:
+      init:  0
+      final: 1
+      step:  10000
+    gp:
+      init: 100
+      final: 100
+      step: 1
+    pix_adv:
+      init: 0
+      final: 0.000001
+      step: 10000
+    pix_clf:
+      init: 0
+      final: 0.000001
+      step: 10000
+
+  verbose_step: 500
+  plot_step: 50000000
+  checkpoint_step: 1000
+  save_log: True
+  show_fig: True
+  save_fig: True
+  save_checkpoint: True
+  save_best_only: False
