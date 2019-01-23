@@ -1,6 +1,6 @@
 # UFDN-TCGA
 
-The code we used to train a UFDN on The Cancer Genome Atlas 
+The code we used to train a Unified Feature Disentagnlement Network (UFDN) on The Cancer Genome Atlas (TCGA)
 
 https://github.com/Alexander-H-Liu/UFDN
 We used Liu et al's implementation has a basis for ours but had to modify their PyTorch code to accommodate an arbitrary number of domains. This code is in the folder src. 
