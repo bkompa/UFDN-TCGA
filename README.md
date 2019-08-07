@@ -1,4 +1,9 @@
 # UFDN-TCGA
+This repo contains the code associated with the following paper (under review):
+
+> Kompa, B., Coker B. 2019. earning a Latent Space of Highly Multidimensional CancerData arXiv preprint arXiv:1901.06023.
+
+Supplementary Material for this work is available here: https://www.dropbox.com/s/zy1piv4q92j95mo/SupplementaryMaterials.pdf?dl=0
 
 The code we used to train a Unified Feature Disentagnlement Network (UFDN) on The Cancer Genome Atlas (TCGA)
 
@@ -9,3 +14,7 @@ The rest of the code in this repository is our own. Data is available here https
 Warning: this file is approximately 2GB. 
 
 Plesae cite our work if relevant! https://arxiv.org/abs/1901.06023
+
+
+
+
