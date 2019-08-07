@@ -1,7 +1,7 @@
 # UFDN-TCGA
 This repo contains the code associated with the following paper (under review):
 
-> Kompa, B., Coker B. 2019. earning a Latent Space of Highly Multidimensional CancerData arXiv preprint arXiv:1901.06023.
+> Kompa, B., Coker B. 2019. Learning a Latent Space of Highly Multidimensional Cancer Data. An early version of this work is available at arXiv preprint arXiv:1901.06023.
 
 Supplementary Material for this work is available here: https://www.dropbox.com/s/zy1piv4q92j95mo/SupplementaryMaterials.pdf?dl=0
 
